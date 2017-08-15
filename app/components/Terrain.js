@@ -2,8 +2,9 @@ import React from 'react'
 import { Text, View } from 'react-native'
 import MapView from 'react-native-maps'
 import MarkerView from './Marker'
+import { ButtonGroup, Button } from 'react-native-elements'
 
-import styles from '../../styles'
+import styles from '../styles'
 
 const rand = () => String(Math.random()).slice(2)
 
@@ -23,7 +24,16 @@ const rand = () => String(Math.random()).slice(2)
 
 
 const TerrainView = (props) => {
-    if (!props.showMap) { return null }
+    // if (!props.showMap) { return null }
+    // if (!props.markers || !props.markers.length) {
+        return (
+
+                <Text>
+                    no markers
+                </Text>
+
+        )
+    // }
     return (
         <View style={styles.column}>
             <MapView
@@ -66,12 +76,13 @@ type Point {
                     )
                 }) }
             </MapView>
-            <View style={styles.buttonGroup}>
-                <Text
-                    style={styles.button}
+            {/*<ButtonGroup>*/}
+                <Button
+                    large
+                    title='DONE'
                     onPress={() => props.hideMap()}
-                >[DONE]</Text>
-            </View>
+                />
+            {/*</ButtonGroup>*/}
         </View>
     )
 }

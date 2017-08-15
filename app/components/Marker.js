@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Image, Text } from 'react-native'
+import styles from '../styles'
 
 /*
 
@@ -29,7 +30,6 @@ import { View, Image, Text } from 'react-native'
   description: 'this is a test marker' }
 
  */
-import styles from '../../styles'
 
 const MarkerView = (props) => {
     return (

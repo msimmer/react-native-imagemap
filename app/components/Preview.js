@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View, Image } from 'react-native'
 
-import styles from '../../styles'
+import styles from '../styles'
 
 const PreviewView = (props) => {
     return (

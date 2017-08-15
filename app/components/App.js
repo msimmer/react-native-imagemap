@@ -1,19 +1,12 @@
-/*
-
-
-open app -> take pictures -> click done -> save marker with gallery
-
- */
-
-
 import React, { Component } from 'react'
 import { Text, View, Image, CameraRoll } from 'react-native'
 
-import Camera from './components/Views/Camera'
-// import Preview from './components/Views/Preview'
-import Terrain from './components/Views/Terrain'
+import Camera from './views/Camera'
+// import Preview from './views/Preview'
+import Terrain from './views/Terrain'
 
-import styles from './styles'
+import styles from '../styles'
+
 
 // import ImagePicker from 'react-native-image-picker'
 
@@ -25,36 +18,19 @@ class App extends Component {
             location: {},
             photos: [],
             markers: [],
-            showMap: false,
             // preview: {},
         }
 
         this.takePhoto = this.takePhoto.bind(this)
         this.savePhotos = this.savePhotos.bind(this)
         this.bindCameraInstance = this.bindCameraInstance.bind(this)
-        this.showMap = this.showMap.bind(this)
-        this.hideMap = this.hideMap.bind(this)
         this.showGallery = this.showGallery.bind(this)
         this.hideGallery = this.hideGallery.bind(this)
+        this.abortPhoto = this.abortPhoto.bind(this)
 
         // this.acceptPreview = this.acceptPreview.bind(this)
         // this.rejectPreview = this.rejectPreview.bind(this)
     }
-
-showMap() {
-    this.setState({ showMap: true })
-}
-hideMap() {
-    this.setState({ showMap: false })
-}
-
-showGallery() {
-    // this.setState({ showGallery: true })
-}
-hideGallery() {
-    // this.setState({ showMap: false })
-}
-
 
 /*
 
@@ -73,7 +49,7 @@ hideGallery() {
     componentWillMount() {
         navigator.geolocation.getCurrentPosition(
             (location) => {
-                console.log('location: ', location)
+                // console.log('location: ', location)
                 this.setState({ location })
             },
             (err) => console.log(err)
@@ -117,8 +93,14 @@ hideGallery() {
         const description = 'this is a test marker'
 
         markers.push({ location, photos, title, description })
-        this.showMap()
 
+        //
+        // navigate to map view?
+    }
+
+    abortPhoto() {
+        this.setState({ photos: [], location: {} })
+        console.log('-- close')
     }
 
     takePhoto() {
@@ -145,21 +127,24 @@ hideGallery() {
     // }
 
     render() {
+
+        console.log('--> app props', this.props)
+        console.log('--> app actions', this.props.actions)
+
         // const { preview } = this.state
         return (
             <View style={styles.row}>
                 <Terrain
                     markers={this.state.markers}
-                    showMap={this.state.showMap}
                     hideMap={this.hideMap}
                 />
                 <Camera
                     // preview={preview}
-                    showMap={this.state.showMap}
                     bindCameraInstance={this.bindCameraInstance}
                     addPhoto={this.addPhoto}
                     savePhotos={this.savePhotos}
                     takePhoto={this.takePhoto}
+                    abortPhoto={this.abortPhoto}
                 />
                 {/*
                 <Preview

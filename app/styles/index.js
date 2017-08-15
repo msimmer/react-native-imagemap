@@ -25,7 +25,7 @@ export default StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center',
         height: Dimensions.get('window').height,
-        width: Dimensions.get('window').width
+        width: Dimensions.get('window').width,
     },
     terrain: {
         flex: 1,
@@ -34,8 +34,8 @@ export default StyleSheet.create({
         flex: 0,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center',
-        margin: 40,
+        justifyContent: 'space-between',
+        margin: 20,
     },
     button: {
         flex: 0,
@@ -47,8 +47,8 @@ export default StyleSheet.create({
     },
     marker: {
         flex: 0,
-        height: 40,
-        width: 40,
+        height: 60,
+        width: 60,
         borderRadius: 5,
         backgroundColor: '#fff',
     },
@@ -56,7 +56,24 @@ export default StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        height: 40,
-        width: 40,
+        height: 60,
+        width: 60,
+    },
+
+    shutter: {
+        flex: 0,
+        height: 80,
+        width: 80,
+        borderRadius: 40,
+        backgroundColor: 'coral',
+        alignSelf: 'flex-start',
+    },
+    cameraClose: {
+        alignSelf: 'flex-end',
+        flex: 0,
+        height: 80,
+        width: 80,
+        borderRadius: 40,
+        backgroundColor: 'coral',
     },
 })
