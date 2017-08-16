@@ -14,7 +14,8 @@ import { Provider } from 'react-redux'
 import reducers from './reducers'
 
 // initialization
-import { setLocation } from './actions'
+import { setLocation, loadGalleries } from './actions'
+import Local from './Local'
 
 const composeInitialState = () => ({
     locationContext: {},
@@ -26,17 +27,25 @@ const configureStore = () => {
     const combinedReducers = combineReducers(reducers)
     const store = createStore(
         combinedReducers,
-        combinedProps, // { pageContext: window.__SERVER_DATA__ },
+        combinedProps,
         compose(applyMiddleware(thunk))
     )
 
-    store.dispatch(setLocation()) // kick off by setting dynamic props
+    // kick off by setting dynamic props
+    store.dispatch(setLocation())
+
+    Local.loadState().then((state) => {
+        if ({}.hasOwnProperty.call(state, 'galleries')) {
+            store.dispatch(loadGalleries(state))
+        }
+    }).catch(err => console.log('Err:', err))
+
     return store
 }
 
 const store = configureStore()
 
-class MyApp extends Component {
+class ImageMap extends Component {
     render() {
         return (
             <NativeRouter>
@@ -49,4 +58,4 @@ class MyApp extends Component {
 }
 
 
-export default MyApp
+export default ImageMap

@@ -13,10 +13,6 @@ export function setLocation() {
         )
 }
 
-export function getLocation() {
-    return { type: types.LOCATION_GET }
-}
-
 // galleries
 export function addGallery(state) {
     const gallery = {
@@ -24,9 +20,13 @@ export function addGallery(state) {
         coordinates: { // for MapView API; see `LatLng` schema
             latitude: state.location.coords.latitude,
             longitude: state.location.coords.longitude,
-            latitudeDelta: 0.0922, // set these to application defaults? see here: https://github.com/airbnb/react-native-maps/issues/637
-            longitudeDelta: 0.0421,
+            latitudeDelta: 0.0100, // set these to application defaults? see here: https://github.com/airbnb/react-native-maps/issues/637
+            longitudeDelta: 0.0100,
         }
     }
     return { gallery, type: types.GALLERY_ADD }
+}
+
+export function loadGalleries({ galleries }) {
+    return { galleries, type: types.GALLERIES_LOAD }
 }

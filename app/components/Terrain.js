@@ -20,14 +20,14 @@ class TerrainView extends Component {
 
     initialRegion() {
         const { coords } = this.props.locationContext.location
-        console.log(coords)
+        // console.log(coords)
         // https://www.google.de/maps/@-26.204103,28.0473051,16z?hl=en
         // Search nearby -26.204161, 28.047273
         return {
             latitude: coords.latitude,
             longitude: coords.longitude,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
+            latitudeDelta: 0.0100,
+            longitudeDelta: 0.0100,
         }
     }
 
@@ -50,6 +50,8 @@ class TerrainView extends Component {
                             const { latitude, longitude } = gallery.coordinates
                             return (
                                 <MapView.Marker
+                                    draggable
+                                    style={{height: 60, width: 60}}
                                     key={rand()}
                                     centerOffset={{ x: 0, y: -40 }}
                                     coordinate={{ latitude, longitude }}
@@ -57,6 +59,12 @@ class TerrainView extends Component {
                                     // description={gallery.description}
                                     onPress={() => {
                                         this.showCarousel(gallery)
+                                    }}
+                                    onDragStart={() => {
+                                        console.log('--- onDragStart')
+                                    }}
+                                    onDragEnd={() => {
+                                        console.log('--- onDragEnd')
                                     }}
                                 >
                                     <MarkerView { ...gallery } />

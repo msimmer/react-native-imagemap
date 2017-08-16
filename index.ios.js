@@ -1,3 +1,3 @@
-import { AppRegistry } from 'react-native';
-import App from './app/index';
-AppRegistry.registerComponent('ImageMap', () => App);
+import { AppRegistry } from 'react-native'
+import ImageMap from './app/index'
+AppRegistry.registerComponent('ImageMap', () => ImageMap)

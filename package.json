@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "babel-eslint": "^7.2.3",
     "babel-preset-react-native-stage-0": "^1.0.1",
+    "eslint": "^3.19.0",
     "jest-expo": "~19.0.0",
     "react-test-renderer": "16.0.0-alpha.12"
   },
@@ -23,6 +25,7 @@
     "react-native": "^0.46.1",
     "react-native-camera": "^0.10.0",
     "react-native-elements": "^0.16.0",
+    "react-native-fs": "^2.5.1",
     "react-native-image-picker": "^0.26.4",
     "react-native-maps": "^0.16.0",
     "react-native-swiper": "^1.5.10",
