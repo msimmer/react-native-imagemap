@@ -2,7 +2,7 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
-import { Camera, Terrain, Gallery } from '../components'
+import { Camera, Terrain, Carousel } from '../components'
 
 const actionFactory = (dispatch) => ({
     actions: bindActionCreators({ ...actions }, dispatch)
@@ -15,4 +15,4 @@ const connectorFactor = () => connect(
 
 export const CameraContainer = connectorFactor()(Camera)
 export const TerrainContainer = connectorFactor()(Terrain)
-export const GalleryContainer = connectorFactor()(Gallery)
+export const CarouselContainer = connectorFactor()(Carousel)

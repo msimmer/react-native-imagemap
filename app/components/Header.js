@@ -2,7 +2,7 @@ import React from 'react'
 import { withRouter } from 'react-router-native'
 import { Text/*, TouchableHighlight*/ } from 'react-native'
 import { Header, Icon } from 'react-native-elements'
-import styles from '../styles'
+import styles from '../styles/grid'
 
 const AppHeader = (props) => (
     <Header
@@ -12,7 +12,7 @@ const AppHeader = (props) => (
                 onPress={() => props.history.push('/terrain')}
             />
         }
-        centerComponent={<Text>text</Text>}
+        centerComponent={<Text>ImageMap</Text>}
         rightComponent={
             <Icon
                 name='camera'

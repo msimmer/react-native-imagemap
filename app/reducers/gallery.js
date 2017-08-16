@@ -4,8 +4,8 @@ const initialState = []
 
 export default function gallery(state = initialState, action = {}) {
     switch (action.type) {
-        // case types.HISTORY_PUSH:
-        //     return { ...state, ...action }
+        case types.GALLERY_ADD:
+            return [...state, action.gallery]
         default:
             return state
     }

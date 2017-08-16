@@ -1,34 +1,32 @@
 import * as types from './actionTypes'
 import { push } from 'react-router-redux'
 
-// history
-export function navigate(_route) {
-    if (typeof _route != 'string') {
-        throw new Error(`Route supplied to \`navigate\` must be a string, \`${typeof _route}\` given`)
-    }
-    return (dispatch) => {
-        const route = `/${_route.replace(/^\//, '')}`
-        dispatch(push(route))
-        return { route, type: types.HISTORY_PUSH }
-    }
-}
-
 // geo location
-export function setLocation(location) {
+export function setLocation() {
     return (dispatch) =>
         navigator.geolocation.getCurrentPosition(
             (location) => dispatch({ location, type: types.LOCATION_SET }),
-            (err) => {
-                console.error(err)
-                return {}
+            (error) => {
+                console.error(error)
+                // dispatch({ error, type: LOCATION_SET_ERROR })
             }
         )
 }
 
 export function getLocation() {
+    return { type: types.LOCATION_GET }
 }
 
-
-// photos
-// markers
 // galleries
+export function addGallery(state) {
+    const gallery = {
+        ...state,
+        coordinates: { // for MapView API; see `LatLng` schema
+            latitude: state.location.coords.latitude,
+            longitude: state.location.coords.longitude,
+            latitudeDelta: 0.0922, // set these to application defaults? see here: https://github.com/airbnb/react-native-maps/issues/637
+            longitudeDelta: 0.0421,
+        }
+    }
+    return { gallery, type: types.GALLERY_ADD }
+}

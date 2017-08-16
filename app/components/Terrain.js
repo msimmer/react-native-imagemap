@@ -1,90 +1,74 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Text, View } from 'react-native'
 import MapView from 'react-native-maps'
 import MarkerView from './Marker'
 import { ButtonGroup, Button } from 'react-native-elements'
 
-import styles from '../styles'
+import g from '../styles/grid'
+import t from '../styles/terrain'
 
 const rand = () => String(Math.random()).slice(2)
 
-/*
+class TerrainView extends Component {
 
-{ coords:
-   { altitudeAccuracy: -1,
-     accuracy: 5,
-     heading: -1,
-     longitude: 28.0473051,
-     altitude: 0,
-     latitude: -26.204103,
-     speed: -1 },
-  timestamp: 1502700294805.1292 }
+    constructor(props) {
+        super(props)
 
- */
+        this.initialRegion = this.initialRegion.bind(this)
+        this.showCarousel = this.showCarousel.bind(this)
+    }
 
+    initialRegion() {
+        const { coords } = this.props.locationContext.location
+        console.log(coords)
+        // https://www.google.de/maps/@-26.204103,28.0473051,16z?hl=en
+        // Search nearby -26.204161, 28.047273
+        return {
+            latitude: coords.latitude,
+            longitude: coords.longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+        }
+    }
 
-const TerrainView = (props) => {
-    // if (!props.showMap) { return null }
-    // if (!props.markers || !props.markers.length) {
+    showCarousel({ id }) {
+        this.props.history.push(`/carousel/${id}`)
+    }
+
+    render() {
+
+        const galleries = this.props.galleryContext
+
         return (
-
-                <Text>
-                    no markers
-                </Text>
-
+            <View style={t.mapViewContainer}>
+                <MapView
+                    style={g.terrain}
+                    initialRegion={this.initialRegion()}
+                >
+                    { galleries.length > 0 ?
+                        galleries.map(gallery => {
+                            const { latitude, longitude } = gallery.coordinates
+                            return (
+                                <MapView.Marker
+                                    key={rand()}
+                                    centerOffset={{ x: 0, y: -40 }}
+                                    coordinate={{ latitude, longitude }}
+                                    // title={gallery.title}
+                                    // description={gallery.description}
+                                    onPress={() => {
+                                        this.showCarousel(gallery)
+                                    }}
+                                >
+                                    <MarkerView { ...gallery } />
+                                </MapView.Marker>
+                            )
+                        }) : null }
+                </MapView>
+            </View>
         )
-    // }
-    return (
-        <View style={styles.column}>
-            <MapView
-                style={styles.terrain}
-                initialRegion={{
-                    latitude: -26.204103,
-                    longitude: 28.0473051,
-                    latitudeDelta: 0.0922, // what do these do?
-                    longitudeDelta: 0.0421,
-                }}
-            >
+    }
 
-{/*
 
-type LatLng {
-  latitude: Number,
-  longitude: Number,
-}
-type Point {
-  x: Number,
-  y: Number,
-}
-*/}
-
-                { props.markers.map(marker => {
-                    const { latitude, longitude } = marker.location.coords
-                    return (
-                        <MapView.Marker
-                            key={rand()}
-                            coordinate={{ latitude, longitude }}
-                            title={marker.title}
-                            description={marker.description}
-                            onPress={(e) => {
-                                console.log('-- clicks marker')
-                                props.showGallery(marker)
-                            }}
-                        >
-                            <MarkerView { ...marker } />
-                        </MapView.Marker>
-                    )
-                }) }
-            </MapView>
-            {/*<ButtonGroup>*/}
-                <Button
-                    large
-                    title='DONE'
-                    onPress={() => props.hideMap()}
-                />
-            {/*</ButtonGroup>*/}
-        </View>
-    )
 }
 
 export default TerrainView

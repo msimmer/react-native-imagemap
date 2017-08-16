@@ -45,35 +45,4 @@ export default StyleSheet.create({
         padding: 10,
         margin: 10,
     },
-    marker: {
-        flex: 0,
-        height: 60,
-        width: 60,
-        borderRadius: 5,
-        backgroundColor: '#fff',
-    },
-    markerImage: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: 60,
-        width: 60,
-    },
-
-    shutter: {
-        flex: 0,
-        height: 80,
-        width: 80,
-        borderRadius: 40,
-        backgroundColor: 'coral',
-        alignSelf: 'flex-start',
-    },
-    cameraClose: {
-        alignSelf: 'flex-end',
-        flex: 0,
-        height: 80,
-        width: 80,
-        borderRadius: 40,
-        backgroundColor: 'coral',
-    },
 })

@@ -17,10 +17,7 @@ import reducers from './reducers'
 import { setLocation } from './actions'
 
 const composeInitialState = () => ({
-    historyContext: { route: '/' },
     locationContext: {},
-    photoContext: [],
-    markerContext: [],
     galleryContext: [],
 })
 

@@ -4,22 +4,20 @@ import { View } from 'react-native'
 import {
     CameraContainer,
     TerrainContainer,
-    GalleryContainer,
+    CarouselContainer,
 } from '../containers'
 
 import { Header } from '../components'
-
-// styles
-import styles from '../styles'
+import g from '../styles/grid'
 
 const Router = (props) => (
-    <View style={styles.column}>
+    <View style={g.column}>
         <Header />
         <Switch>
             <Route exact path='/' component={CameraContainer} />
             <Route path='/camera' component={CameraContainer} />
             <Route path='/terrain' component={TerrainContainer} />
-            <Route path='/gallery' component={GalleryContainer} />
+            <Route path='/carousel/:id' component={CarouselContainer} />
         </Switch>
     </View>
 )
