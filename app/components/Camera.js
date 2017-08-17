@@ -19,10 +19,17 @@ class CameraView extends Component {
         this.cancel = this.cancel.bind(this)
         this.ensureLocation = this.ensureLocation.bind(this)
         this.navigateToMap = this.navigateToMap.bind(this)
+        this.setLocation = this.setLocation.bind(this)
     }
 
     componentWillMount() {
         this.setInitialState()
+        this.setLocation().catch(err => console.log('Err:', err))
+    }
+
+    setLocation() {
+        return this.props.actions.setLocation()
+        .catch(err => console.log('Err:', err))
     }
 
     setInitialState() {
@@ -39,9 +46,7 @@ class CameraView extends Component {
             if (location && Object.keys(location).length > 0) {
                 return resolve(location)
             }
-            return this.props.actions.setLocation().then(() =>
-                resolve(this.props.locationContext.location)
-            ).catch(err => reject(err))
+            this.setLocation().then(resolve)
         })
     }
 
