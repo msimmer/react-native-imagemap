@@ -15,7 +15,7 @@ export default StyleSheet.create({
     mapViewContainer: {
         flex: 1,
         flexDirection: 'column',
-        marginTop: 70,
+        // marginTop: 70,
     },
     marker: {
         flex: 0,
@@ -38,13 +38,13 @@ export default StyleSheet.create({
 
     },
     markerPointer: {
-        flex: 0,
-        position: 'absolute',
-        bottom: -10,
-        width: 20,
-        height: 20,
-        zIndex: 0,
-        transform: [{ rotate: '45deg' }],
-        backgroundColor: 'salmon',
+        // flex: 0,
+        // position: 'absolute',
+        // bottom: -10,
+        // width: 20,
+        // height: 20,
+        // zIndex: 0,
+        // transform: [{ rotate: '45deg' }],
+        // backgroundColor: 'salmon',
     },
 })

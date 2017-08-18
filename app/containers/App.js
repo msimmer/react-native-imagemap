@@ -16,7 +16,7 @@ const Router = (props) => (
         <Switch>
             <Route exact path='/' component={CameraContainer} />
             <Route path='/camera' component={CameraContainer} />
-            <Route path='/terrain' component={TerrainContainer} />
+            <Route path='/terrain/:coords?' component={TerrainContainer} />
             <Route path='/carousel/:id' component={CarouselContainer} />
         </Switch>
     </View>

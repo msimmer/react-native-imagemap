@@ -1,19 +1,10 @@
-// react
 import React, { Component } from 'react'
-
-// router
 import { NativeRouter, Route, Link, Switch } from 'react-router-native'
-
-// views
 import App from './containers/App'
-
-// redux
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import reducers from './reducers'
-
-// initialization
 import { setLocation, loadGalleries } from './actions'
 import Local from './Local'
 
@@ -31,11 +22,9 @@ const configureStore = () => {
         compose(applyMiddleware(thunk))
     )
 
-    // kick off by setting dynamic props
-    store.dispatch(setLocation())
-
+    // load saved state from disk
     Local.loadState().then((state) => {
-        if ({}.hasOwnProperty.call(state, 'galleries')) {
+        if (state && {}.hasOwnProperty.call(state, 'galleries')) {
             store.dispatch(loadGalleries(state))
         }
     }).catch(err => console.log('Err:', err))

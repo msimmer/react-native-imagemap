@@ -2,11 +2,10 @@ import React from 'react'
 import { Text, View, Image } from 'react-native'
 import { Button, Icon } from 'react-native-elements'
 import Swiper from 'react-native-swiper'
+import { rand } from '../utility'
 
 import g from '../styles/grid'
 import c from '../styles/carousel'
-
-const rand = () => String(Math.random()).slice(2)
 
 const where = (ref) => {
     const k = Object.keys(ref)[0]
@@ -20,13 +19,6 @@ const Carousel = (props) => {
     if (!gallery) { return null } // TODO: redirect/error/cleanup
     return (
         <View style={g.column}>
-            <View style={c.buttonContainer}>
-                <Button
-                    icon={{ name: 'close' }}
-                    onPress={() => props.history.goBack()}
-                    buttonStyle={c.button}
-                />
-            </View>
             <Swiper
                 showsButtons={false}
                 showsPagination={false}
